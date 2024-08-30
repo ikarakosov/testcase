@@ -14,10 +14,11 @@
 - docker compose up -d --force-recreate --build
 - docker compose down
 
-[!WARNING]
-### Known issues:
-Could be a permission problem with /run/docker.sock mounting.<br/>
-Solution -- **sudo chmod 666 /run/docker.sock**
+> [!WARNING]  
+> ### Known issues:
+> Could be a permission problem with /run/docker.sock mounting.<br/>
+> Solution -- **sudo chmod 666 /run/docker.sock**
+
 
 
 ## Prometheus.
