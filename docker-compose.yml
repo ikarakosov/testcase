@@ -1,0 +1,28 @@
+version: '3'
+services:
+  prometheus:
+    image: prom/prometheus
+    privileged: true
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "./alerts.yml:/etc/prometheus/alerts.yml"
+      - type: bind
+        source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+    networks:
+      - common
+    ports:
+      - 9090:9090
+    # entrypoint: sleep 3600
+  # app:
+  #   build:
+  #     context: .
+  #   networks:
+  #     - common
+  #   ports:
+  #     - 3000
+  #   deploy:
+  #     replicas: 1
+networks:
+  common:
+    driver: bridge

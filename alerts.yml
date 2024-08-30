@@ -1,0 +1,20 @@
+groups:
+- name: test.rules
+  rules:
+  - alert: HighRequestLatency-99p
+    expr: histogram_quantile(0.99,sum by (le) (rate(flask_http_request_duration_seconds_bucket{path=~'/status|/wait|/longwait',status!~'401|403|404|405|500|502|503'}[5m]))) > 1
+    for: 2m
+    labels:
+      severity: critical
+  - alert: HighRequestLatency-95p
+    expr: histogram_quantile(0.95,sum by (le) (rate(flask_http_request_duration_seconds_bucket[1m]))) > 1
+    for: 2m
+    labels:
+      severity: critical  
+  - alert: Noresponse
+    expr: up == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "{{ $labels.instance }} no response for 1m"
