@@ -25,7 +25,7 @@ services:
 
   app:
     build:
-      context: /app
+      context: ./app
     networks:
       - common
     ports:
@@ -46,7 +46,7 @@ services:
       - app
       - prometheus
     build:
-      context: /loader
+      context: ./loader
       dockerfile: Dockerfile.loader
     volumes:
       - ./report:/app/report
