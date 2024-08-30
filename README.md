@@ -17,7 +17,8 @@
 > [!WARNING]  
 > ### Known issues:
 > Could be a permission problem with /run/docker.sock mounting.<br/>
-> Solution -- **sudo chmod 666 /run/docker.sock**
+> If u don't see targets on prometheus do:
+> **sudo chmod 666 /run/docker.sock**
 
 
 
@@ -29,7 +30,7 @@ Prometheus configuration setups in 2 files:
 
 Docker-autodiscovery implemented.
 
-
+Available at **http://localhost:9090**
 
 ## Webserver.
 
