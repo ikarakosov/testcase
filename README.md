@@ -14,8 +14,9 @@
 - docker compose up -d --force-recreate --build
 - docker compose down
 
-## Known issues:
-Could be a permission problem with /run/docker.sock mounting.\n
+[!WARNING]
+### Known issues:
+Could be a permission problem with /run/docker.sock mounting.<br/>
 Solution -- **sudo chmod 666 /run/docker.sock**
 
 
@@ -31,15 +32,15 @@ Docker-autodiscovery implemented.
 
 ## Webserver.
 
-Webserver written in Python(Flask).\n
-Could be extended at your discretion.\n
+Webserver written in Python(Flask).<br/>
+Could be extended at your discretion.<br/>
 Directory -- **./app**
 
 
 ## Load-generator.
 
-Basic configuration -- 30s of load.\n
-After 30s creates a report at **report/report.hmtl**\n
+Basic configuration -- 30s of load.<br/>
+After 30s creates a report at **report/report.hmtl**<br/>
 Directory -- **./loader**
 
 
