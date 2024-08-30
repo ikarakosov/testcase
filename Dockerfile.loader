@@ -1,0 +1,5 @@
+FROM python:3.9.19-alpine
+COPY loader /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+CMD locust -f loader.py --host http://app:3000

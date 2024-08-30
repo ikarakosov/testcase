@@ -6,8 +6,6 @@ from time import sleep
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
 
-
-# Главный эндпоинт, который возвращает статус 200 и информацию о сервере
 @app.route('/')
 def home():
     return jsonify({
@@ -15,7 +13,6 @@ def home():
         "status": "running"
     }), 200
 
-# Эндпоинт для проверки статуса сервера
 @app.route('/status')
 def status():
     return jsonify({

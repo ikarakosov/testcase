@@ -1,28 +1,59 @@
-version: '3'
 services:
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     privileged: true
     volumes:
       - "./prometheus.yml:/etc/prometheus/prometheus.yml"
       - "./alerts.yml:/etc/prometheus/alerts.yml"
-      - type: bind
-        source: "/var/run/docker.sock"
-        target: "/var/run/docker.sock"
+      - "/run/docker.sock:/run/docker.sock"
     networks:
       - common
     ports:
       - 9090:9090
-    # entrypoint: sleep 3600
-  # app:
-  #   build:
-  #     context: .
-  #   networks:
-  #     - common
-  #   ports:
-  #     - 3000
-  #   deploy:
-  #     replicas: 1
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+  app:
+    build:
+      context: .
+    networks:
+      - common
+    ports:
+      - 3000
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
+        reservations:
+          cpus: '0.125'
+          memory: 64M
+  loader:
+    depends_on:
+      - app
+      - prometheus
+    build:
+      context: .
+      dockerfile: Dockerfile.loader
+    networks:
+      - common
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
 networks:
   common:
     driver: bridge
