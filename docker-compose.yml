@@ -61,7 +61,7 @@ services:
         reservations:
           cpus: '0.25'
           memory: 256M
-    command: locust -f loader.py --host http://app:3000 --autostart -t 30s --html /app/report/report.html
+    command: locust -f loader.py --host http://app:3000 --autostart --headless --print-stats -t 30s --html /app/report/report.html
 
 
 networks:
