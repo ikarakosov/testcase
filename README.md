@@ -10,9 +10,10 @@ This repo implements a system consist of:
 
 
 ###How to:###
-- docker compose up 
+- docker compose up      
 - docker compose up -d  
-- docker compose up -d --force-recreate
+- docker compose up -d --force-recreate --build
+- docker compose down
 
 Known issues:
 >Could be a permission problem with /run/docker.sock mounting
